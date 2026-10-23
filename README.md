@@ -49,6 +49,12 @@ Open the right file in `data/recipes/` (for example `desserts.ts`) and add an en
 
 Start each ingredient line with its quantity (`1 1/2 cups ...`) so the servings scaler can adjust it. The URL slug and the "quick" tag (30 minutes or less) are added automatically.
 
+## Photos
+
+206 recipes have a real food photo from [Wikimedia Commons](https://commons.wikimedia.org). All are freely licensed (CC0, public domain, CC BY or CC BY-SA) and saved in `public/images/recipes/` as a large and a card-sized JPEG. Each recipe page credits the photographer and license, which these licenses require. The credits live in `data/photos.ts`.
+
+Recipes without a good matching photo keep their emoji card. To add or replace a photo, drop `<slug>.jpg` (about 1200×900) and `<slug>-sm.jpg` (640×480) into `public/images/recipes/` and add an entry to `data/photos.ts`.
+
 ## Optional: AI recipe generation
 
 The AI Kitchen calls OpenAI from a **server-side** route only (`app/api/generate/route.ts` → `lib/ai.ts`, which is marked `server-only`). The key never reaches the browser. Without a key, the page shows a friendly "turned off" message and the rest of the site works normally.

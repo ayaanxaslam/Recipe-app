@@ -54,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <footer className="no-print border-t border-line/70 py-8 text-center text-sm text-muted">
           <p>Mise · my personal recipe box · cooked with care</p>
+          <p className="mt-1 text-xs">Food photos from Wikimedia Commons, credited on each recipe.</p>
         </footer>
       </body>
     </html>

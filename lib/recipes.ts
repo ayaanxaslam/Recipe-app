@@ -1,5 +1,8 @@
-import { recipes } from "@/data/recipes";
+import { photos } from "@/data/photos";
+import { recipes as baseRecipes } from "@/data/recipes";
 import { CATEGORIES, type Recipe, type RecipeSummary } from "./types";
+
+const recipes: Recipe[] = baseRecipes.map((r) => (photos[r.slug] ? { ...r, photo: photos[r.slug] } : r));
 
 const bySlug = new Map(recipes.map((r) => [r.slug, r]));
 
@@ -26,6 +29,7 @@ export function toSummary(r: Recipe): RecipeSummary {
     totalTime: totalTime(r),
     servings: r.servings,
     emoji: r.emoji,
+    photo: r.photo?.thumb,
     diets: r.diets,
     tags: r.tags,
     ingredientText: r.ingredients.flatMap((g) => g.items).join("\n"),

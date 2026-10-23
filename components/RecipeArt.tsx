@@ -4,12 +4,17 @@ export function RecipeArt({
   emoji,
   category,
   seed,
+  photo,
+  alt = "",
   size = "md",
   className = "",
 }: {
   emoji: string;
   category: string;
   seed: string;
+  /** Photo URL; falls back to emoji art when missing */
+  photo?: string;
+  alt?: string;
   size?: "sm" | "md" | "lg";
   className?: string;
 }) {
@@ -18,11 +23,25 @@ export function RecipeArt({
     <div
       className={`relative grid place-items-center overflow-hidden ${className}`}
       style={{ background: artGradient(category, seed) }}
-      aria-hidden
+      aria-hidden={photo ? undefined : true}
     >
-      <div className="grain absolute inset-0 opacity-60" />
-      <div className="absolute -right-6 -bottom-6 size-32 rounded-full bg-white/20 blur-2xl" />
-      <span className={`relative drop-shadow-[0_8px_16px_rgba(0,0,0,0.18)] ${emojiSize}`}>{emoji}</span>
+      {photo ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={photo}
+          alt={alt}
+          loading={size === "lg" ? "eager" : "lazy"}
+          fetchPriority={size === "lg" ? "high" : undefined}
+          decoding="async"
+          className="absolute inset-0 size-full object-cover"
+        />
+      ) : (
+        <>
+          <div className="grain absolute inset-0 opacity-60" />
+          <div className="absolute -right-6 -bottom-6 size-32 rounded-full bg-white/20 blur-2xl" />
+          <span className={`relative drop-shadow-[0_8px_16px_rgba(0,0,0,0.18)] ${emojiSize}`}>{emoji}</span>
+        </>
+      )}
     </div>
   );
 }

@@ -55,13 +55,34 @@ export function RecipeView({ recipe, badge }: { recipe: Recipe; badge?: string }
             <RecipeToolbar />
           </div>
         </div>
-        <RecipeArt
-          emoji={recipe.emoji}
-          category={recipe.category}
-          seed={recipe.slug}
-          size="lg"
-          className="no-print order-1 aspect-[4/3] rounded-3xl md:order-2 md:aspect-square"
-        />
+        <figure className="no-print order-1 md:order-2">
+          <RecipeArt
+            emoji={recipe.emoji}
+            category={recipe.category}
+            seed={recipe.slug}
+            photo={recipe.photo?.src}
+            alt={recipe.title}
+            size="lg"
+            className="aspect-[4/3] rounded-3xl md:aspect-square"
+          />
+          {recipe.photo && (
+            <figcaption className="mt-2 text-right text-xs text-muted">
+              Photo:{" "}
+              <a href={recipe.photo.source} target="_blank" rel="noopener noreferrer" className="hover:text-accent hover:underline">
+                {recipe.photo.artist}
+              </a>
+              ,{" "}
+              {recipe.photo.licenseUrl ? (
+                <a href={recipe.photo.licenseUrl} target="_blank" rel="noopener noreferrer" className="hover:text-accent hover:underline">
+                  {recipe.photo.license}
+                </a>
+              ) : (
+                recipe.photo.license
+              )}
+              , via Wikimedia Commons
+            </figcaption>
+          )}
+        </figure>
       </header>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[380px_1fr]">

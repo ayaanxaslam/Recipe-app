@@ -49,7 +49,15 @@ export default function HomePage() {
             href={`/recipes/${feature.slug}`}
             className="group grid overflow-hidden rounded-3xl border border-line bg-surface md:grid-cols-2"
           >
-            <RecipeArt emoji={feature.emoji} category={feature.category} seed={feature.slug} size="lg" className="min-h-64" />
+            <RecipeArt
+              emoji={feature.emoji}
+              category={feature.category}
+              seed={feature.slug}
+              photo={feature.photo?.src}
+              alt={feature.title}
+              size="lg"
+              className="min-h-64 md:min-h-80"
+            />
             <div className="flex flex-col justify-center gap-4 p-8 sm:p-10">
               <span className="w-fit rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
                 Recipe of the day

@@ -5,7 +5,7 @@ import { RecipeArt } from "./RecipeArt";
 
 type CardRecipe = Pick<
   RecipeSummary,
-  "slug" | "title" | "description" | "category" | "cuisine" | "difficulty" | "totalTime" | "emoji" | "diets"
+  "slug" | "title" | "description" | "category" | "cuisine" | "difficulty" | "totalTime" | "emoji" | "photo" | "diets"
 >;
 
 export function RecipeCard({ recipe }: { recipe: CardRecipe }) {
@@ -18,7 +18,9 @@ export function RecipeCard({ recipe }: { recipe: CardRecipe }) {
         emoji={recipe.emoji}
         category={recipe.category}
         seed={recipe.slug}
-        className="aspect-[4/3] transition duration-300 [&>span]:transition [&>span]:duration-300 group-hover:[&>span]:scale-110"
+        photo={recipe.photo}
+        alt={recipe.title}
+        className="aspect-[4/3] [&>img]:transition [&>img]:duration-500 [&>span]:transition [&>span]:duration-300 group-hover:[&>img]:scale-105 group-hover:[&>span]:scale-110"
       />
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted">

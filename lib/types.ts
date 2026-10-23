@@ -51,6 +51,19 @@ export interface IngredientGroup {
   items: string[];
 }
 
+/** A freely licensed food photo stored in public/images/recipes. */
+export interface Photo {
+  /** Large image, e.g. /images/recipes/shakshuka.jpg */
+  src: string;
+  /** Small image for cards */
+  thumb: string;
+  artist: string;
+  license: string;
+  licenseUrl?: string;
+  /** Wikimedia Commons file page */
+  source: string;
+}
+
 export interface Recipe {
   slug: string;
   title: string;
@@ -69,6 +82,7 @@ export interface Recipe {
   ingredients: IngredientGroup[];
   steps: string[];
   tips?: string[];
+  photo?: Photo;
 }
 
 /** Lightweight version of a recipe sent to the browser for searching and listing. */
@@ -82,6 +96,8 @@ export interface RecipeSummary {
   totalTime: number;
   servings: number;
   emoji: string;
+  /** Card-sized photo URL, if the recipe has one */
+  photo?: string;
   diets: Diet[];
   tags: string[];
   /** Every ingredient line joined, used for ingredient search */
