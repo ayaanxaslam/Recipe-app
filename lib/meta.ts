@@ -26,6 +26,11 @@ export function artGradient(category: Category | string, seed: string): string {
 }
 
 export function formatMinutes(min: number): string {
+  if (min >= 1440) {
+    const d = Math.floor(min / 1440);
+    const h = Math.round((min % 1440) / 60);
+    return `${d} ${d === 1 ? "day" : "days"}${h ? ` ${h} hr` : ""}`;
+  }
   if (min < 60) return `${min} min`;
   const h = Math.floor(min / 60);
   const m = min % 60;

@@ -27,6 +27,8 @@ const RECIPE_SCHEMA = {
     "difficulty",
     "prepTime",
     "cookTime",
+    "waitTime",
+    "waitLabel",
     "servings",
     "emoji",
     "diets",
@@ -43,6 +45,11 @@ const RECIPE_SCHEMA = {
     difficulty: { type: "string", enum: [...DIFFICULTIES] },
     prepTime: { type: "integer", description: "Minutes" },
     cookTime: { type: "integer", description: "Minutes" },
+    waitTime: {
+      type: "integer",
+      description: "Hands-off minutes not included in prep or cook, such as marinating, chilling, soaking, or rising. 0 if none.",
+    },
+    waitLabel: { type: "string", description: "One word for the waiting, e.g. Marinating or Chilling. Empty if none." },
     servings: { type: "integer" },
     emoji: { type: "string", description: "A single food emoji that represents the dish." },
     diets: { type: "array", items: { type: "string", enum: [...DIETS] } },
@@ -73,6 +80,8 @@ Rules:
 - Ingredient lines start with the quantity (use fractions like 1/2, not decimals) then the unit, then the ingredient and prep.
 - Steps are clear, ordered, and include heat levels, times, and doneness cues.
 - Times are realistic integers in minutes. Use US units and Fahrenheit.
+- Put marinating, chilling, soaking, rising, and resting in waitTime, never in prepTime or cookTime.
+- Give safe internal temperatures for meat, poultry, and fish where it matters.
 - Only list a diet (Vegetarian, Vegan, Gluten-Free, Dairy-Free) if the recipe truly qualifies.
 - If the request is not about food or cooking, still return a simple, sensible recipe loosely inspired by it.`;
 
@@ -130,6 +139,8 @@ function toRecipe(raw: Record<string, unknown>): Recipe {
     difficulty,
     prepTime: clampInt(raw.prepTime, 0, 1440, 15),
     cookTime: clampInt(raw.cookTime, 0, 2880, 20),
+    waitTime: clampInt(raw.waitTime, 0, 10080, 0) || undefined,
+    waitLabel: String(raw.waitLabel ?? "").trim().slice(0, 24) || undefined,
     servings: clampInt(raw.servings, 1, 50, 4),
     emoji: String(raw.emoji ?? "🍽️").slice(0, 8) || "🍽️",
     diets: strings(raw.diets, 4).filter((d): d is Diet => DIETS.includes(d as Diet)),

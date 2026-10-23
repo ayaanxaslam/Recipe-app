@@ -233,7 +233,7 @@ export default defineRecipes("Pasta & Noodles", [
       "2 tbsp mirin",
       "1 tbsp sesame oil",
       "4 portions fresh ramen noodles",
-      "4 soft-boiled eggs, marinated in soy and mirin",
+      "4 soft-boiled eggs (optionally marinated a few hours in soy sauce and mirin)",
       "Nori sheets, corn, bamboo shoots, and chili oil",
     ],
     steps: [

@@ -8,10 +8,12 @@ import { StepsList } from "./StepsList";
 
 /** Full recipe layout, shared by saved recipes and AI-generated ones. */
 export function RecipeView({ recipe, badge }: { recipe: Recipe; badge?: string }) {
-  const total = recipe.prepTime + recipe.cookTime;
+  const wait = recipe.waitTime ?? 0;
+  const total = recipe.prepTime + recipe.cookTime + wait;
   const facts = [
     { label: "Prep", value: formatMinutes(recipe.prepTime) },
     { label: "Cook", value: recipe.cookTime ? formatMinutes(recipe.cookTime) : "—" },
+    ...(wait ? [{ label: recipe.waitLabel || "Waiting", value: formatMinutes(wait) }] : []),
     { label: "Total", value: formatMinutes(total) },
     { label: "Serves", value: String(recipe.servings) },
     { label: "Level", value: recipe.difficulty },
@@ -43,7 +45,7 @@ export function RecipeView({ recipe, badge }: { recipe: Recipe; badge?: string }
           </div>
           <h1 className="font-serif text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">{recipe.title}</h1>
           <p className="mt-4 text-lg text-muted">{recipe.description}</p>
-          <dl className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-5">
+          <dl className={`mt-6 grid grid-cols-3 gap-3 ${wait ? "sm:grid-cols-6" : "sm:grid-cols-5"}`}>
             {facts.map((f) => (
               <div key={f.label} className="rounded-2xl border border-line bg-surface px-3 py-3 text-center">
                 <dt className="text-[11px] font-bold uppercase tracking-wider text-muted">{f.label}</dt>
@@ -51,6 +53,11 @@ export function RecipeView({ recipe, badge }: { recipe: Recipe; badge?: string }
               </div>
             ))}
           </dl>
+          {wait > 0 && (
+            <p className="mt-3 text-sm text-muted">
+              Includes {formatMinutes(wait)} of hands-off {(recipe.waitLabel || "waiting").toLowerCase()}, so plan ahead.
+            </p>
+          )}
           <div className="mt-6">
             <RecipeToolbar />
           </div>

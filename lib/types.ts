@@ -75,6 +75,10 @@ export interface Recipe {
   prepTime: number;
   /** Minutes */
   cookTime: number;
+  /** Hands-off minutes such as marinating, chilling, soaking, or rising */
+  waitTime?: number;
+  /** What the waiting is for, e.g. "Marinating" */
+  waitLabel?: string;
   servings: number;
   emoji: string;
   diets: Diet[];
@@ -93,7 +97,10 @@ export interface RecipeSummary {
   category: Category;
   cuisine: string;
   difficulty: Difficulty;
+  /** Prep + cook + waiting, in minutes */
   totalTime: number;
+  /** Hands-off minutes included in totalTime */
+  waitTime?: number;
   servings: number;
   emoji: string;
   /** Card-sized photo URL, if the recipe has one */

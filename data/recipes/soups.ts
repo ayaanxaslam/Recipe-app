@@ -416,7 +416,7 @@ export default defineRecipes("Soups & Stews", [
       "4 cups vegetable broth",
       "1 tbsp chopped fresh sage",
       "1/4 tsp nutmeg",
-      "1/2 cup coconut milk or cream",
+      "1/2 cup coconut milk",
       "Toasted pepitas, for serving",
     ],
     steps: [
@@ -571,7 +571,7 @@ export default defineRecipes("Soups & Stews", [
     ingredients: [
       "8 cups chicken broth",
       "1 lb boneless chicken breasts",
-      "2/3 cup long-grain rice or orzo",
+      "2/3 cup long-grain rice",
       "3 large eggs",
       "1/3 cup lemon juice",
       "Salt and pepper, to taste",
@@ -584,6 +584,6 @@ export default defineRecipes("Soups & Stews", [
       "Pour the egg mixture back into the pot over low heat, stirring until thickened slightly. Do not boil.",
       "Add the chicken, season, and serve with dill.",
     ],
-    tips: ["Use rice rather than orzo to keep it gluten-free."],
+    tips: ["Orzo is a common swap for the rice, but then the soup is no longer gluten-free."],
   },
 ]);

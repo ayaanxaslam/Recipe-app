@@ -14,8 +14,8 @@ export function getRecipe(slug: string): Recipe | undefined {
   return bySlug.get(slug);
 }
 
-export function totalTime(r: Pick<Recipe, "prepTime" | "cookTime">): number {
-  return r.prepTime + r.cookTime;
+export function totalTime(r: Pick<Recipe, "prepTime" | "cookTime" | "waitTime">): number {
+  return r.prepTime + r.cookTime + (r.waitTime ?? 0);
 }
 
 export function toSummary(r: Recipe): RecipeSummary {
@@ -27,6 +27,7 @@ export function toSummary(r: Recipe): RecipeSummary {
     cuisine: r.cuisine,
     difficulty: r.difficulty,
     totalTime: totalTime(r),
+    waitTime: r.waitTime,
     servings: r.servings,
     emoji: r.emoji,
     photo: r.photo?.thumb,

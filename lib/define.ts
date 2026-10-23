@@ -8,6 +8,8 @@ export interface RecipeInput {
   difficulty: Difficulty;
   prepTime: number;
   cookTime: number;
+  waitTime?: number;
+  waitLabel?: string;
   servings: number;
   emoji: string;
   diets?: Diet[];
@@ -38,7 +40,7 @@ function toGroups(ingredients: RecipeInput["ingredients"]): IngredientGroup[] {
 export function defineRecipes(category: Category, inputs: RecipeInput[]): Recipe[] {
   return inputs.map((r) => {
     const tags = new Set(r.tags ?? []);
-    if (r.prepTime + r.cookTime <= 30) tags.add("quick");
+    if (r.prepTime + r.cookTime + (r.waitTime ?? 0) <= 30) tags.add("quick");
     return {
       ...r,
       slug: slugify(r.title),

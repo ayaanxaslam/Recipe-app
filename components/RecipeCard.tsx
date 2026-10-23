@@ -5,7 +5,7 @@ import { RecipeArt } from "./RecipeArt";
 
 type CardRecipe = Pick<
   RecipeSummary,
-  "slug" | "title" | "description" | "category" | "cuisine" | "difficulty" | "totalTime" | "emoji" | "photo" | "diets"
+  "slug" | "title" | "description" | "category" | "cuisine" | "difficulty" | "totalTime" | "waitTime" | "emoji" | "photo" | "diets"
 >;
 
 export function RecipeCard({ recipe }: { recipe: CardRecipe }) {
@@ -31,7 +31,13 @@ export function RecipeCard({ recipe }: { recipe: CardRecipe }) {
         <h3 className="font-serif text-lg leading-snug font-semibold group-hover:text-accent">{recipe.title}</h3>
         <p className="line-clamp-2 text-sm text-muted">{recipe.description}</p>
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-2 text-xs">
-          <span className="rounded-full bg-surface-2 px-2.5 py-1 font-medium">⏱ {formatMinutes(recipe.totalTime)}</span>
+          <span
+            className="rounded-full bg-surface-2 px-2.5 py-1 font-medium"
+            title={recipe.waitTime ? `Includes ${formatMinutes(recipe.waitTime)} hands-off` : undefined}
+          >
+            ⏱ {formatMinutes(recipe.totalTime)}
+            {recipe.waitTime ? <span className="text-muted"> · plan ahead</span> : null}
+          </span>
           <span className="rounded-full bg-surface-2 px-2.5 py-1 font-medium">{recipe.difficulty}</span>
           {recipe.diets.includes("Vegan") ? (
             <span className="rounded-full bg-sage-soft px-2.5 py-1 font-medium text-sage">Vegan</span>

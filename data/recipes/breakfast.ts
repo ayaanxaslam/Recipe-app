@@ -122,7 +122,7 @@ export default defineRecipes("Breakfast & Brunch", [
       { title: "To assemble", items: [
         "8 corn tortillas",
         "3 tbsp vegetable oil",
-        "1 (15-oz) can refried beans, warmed",
+        "1 (15-oz) can vegetarian refried beans, warmed",
         "8 large eggs",
         "1 avocado, sliced",
         "1/2 cup crumbled queso fresco",
@@ -145,6 +145,8 @@ export default defineRecipes("Breakfast & Brunch", [
     difficulty: "Easy",
     prepTime: 5,
     cookTime: 0,
+    waitTime: 360,
+    waitLabel: "Chilling",
     servings: 2,
     emoji: "🥣",
     diets: ["Vegetarian"],
@@ -199,7 +201,10 @@ export default defineRecipes("Breakfast & Brunch", [
       "Meanwhile toast the muffins and sear the Canadian bacon in a skillet until browned at the edges.",
       "Top each muffin half with bacon and a poached egg, spoon over the hollandaise, and sprinkle with chives.",
     ],
-    tips: ["If the hollandaise gets too thick, whisk in a teaspoon of warm water."],
+    tips: [
+      "If the hollandaise gets too thick, whisk in a teaspoon of warm water.",
+      "The hollandaise yolks are only lightly cooked. Use pasteurized eggs if you're serving anyone pregnant, very young, elderly, or immunocompromised.",
+    ],
   },
   {
     title: "Breakfast Burritos",
@@ -368,7 +373,7 @@ export default defineRecipes("Breakfast & Brunch", [
       "1/2 white onion, plus more thinly sliced for topping",
       "2 cloves garlic",
       "1 cup cilantro",
-      "1 cup chicken or vegetable broth",
+      "1 cup vegetable broth",
       "1 tsp salt",
       "2 tbsp vegetable oil",
       "8 oz thick tortilla chips",
@@ -396,7 +401,7 @@ export default defineRecipes("Breakfast & Brunch", [
     tags: ["bento"],
     ingredients: [
       "4 large eggs",
-      "2 tbsp dashi or water",
+      "2 tbsp water or kombu dashi",
       "1 tbsp sugar",
       "1 tsp mirin",
       "1 tsp soy sauce",
